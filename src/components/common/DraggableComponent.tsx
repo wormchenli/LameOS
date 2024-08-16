@@ -73,6 +73,7 @@ export const DraggableComponent: React.FC<IUiProp> = ({
         left: currentPosition.x,
         width: sizeProp?.width,
         height: sizeProp?.height,
+        zIndex: zIndexProp,
         ...cssStyleProp,
       }}
       onMouseDown={mouseDownHandler}
