@@ -7,3 +7,6 @@ The window component should separate from the stack/array module, the module sho
 
 Finish window bring to front functionality. In React functional component, we should aware of the 'stale state' problem, it may cause by the component dynamical initialization which may form a 'closure'.
 In WindowManager.tsx, I gave up using function to dynamically create components, and switch to the traditional way, to render the component in the return statement.
+
+This version also has a bug. When click 'bring to front' inside each create component, the position of the clicked window did not persist during re-render, and the text inside the window clicked also changed during re-render.
+![alt text](image.png)
