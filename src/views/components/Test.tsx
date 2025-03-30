@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import useWindowManager from "@/os/utils/hooks/windowManagerHook";
 import { IWindow } from "@/os/utils/interfaces/windowInterfaces";
 import Window from "./common/Window";
