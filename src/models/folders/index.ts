@@ -1,11 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class Folder {
+export class Folders {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({ unique: true })
+    @Column({ type: "text", unique: true, nullable: false })
     uuid!: string;
 
     @Column()
@@ -17,12 +17,12 @@ export class Folder {
     @Column({ nullable: true })
     icon?: string;
 
-    @Column()
-    isEmpty!: boolean;
+    @Column({ type: "boolean", nullable: false })
+    isempty!: boolean;
 
-    @Column()
-    isDeleted!: boolean;
+    @Column({ type: "boolean", nullable: false })
+    isdeleted!: boolean;
 
-    @Column({ nullable: true })
-    parent_id?: string;
+    @Column({ nullable: true, type: "text" })
+    parentid: string | null = null;
 }

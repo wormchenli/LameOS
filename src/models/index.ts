@@ -1,6 +1,7 @@
 import "reflect-metadata";
+
 import { loadEnvConfig } from "@next/env";
-import { Folder } from "./folders";
+import { Folders } from "@/models/folders";
 
 const projectDir = process.cwd();
 loadEnvConfig(projectDir);
@@ -14,13 +15,16 @@ export const AppDataSource = new DataSource({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
-    entities: [Folder],
+    entities: [Folders],
 });
 
-AppDataSource.initialize()
+await AppDataSource.initialize()
     .then(() => {
         console.log("Data Source has been initialized!");
     })
     .catch((err) => {
-        console.error("Error during Data Source initialization", err);
+        console.error(
+            "Error during Data Source initialization ==============>",
+            err
+        );
     });
