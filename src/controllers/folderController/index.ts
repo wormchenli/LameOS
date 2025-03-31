@@ -1,4 +1,5 @@
 import "server-only";
+import "reflect-metadata";
 
 import { AppDataSource } from "@/models";
 import { Folders } from "@/models/folders";
