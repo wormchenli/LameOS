@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IWindow } from "@/os/utils/interfaces/windowInterfaces";
+import { TitleBarIconsComponent } from "../TitleBarIcons";
 
 interface IPosition {
     x: number;
@@ -58,6 +59,7 @@ const Window = ({
                 id="titlebar"
                 className="transparent h-20 flex items-center justify-between border border-gray-500"
             >
+                <TitleBarIconsComponent />
                 <span>{windowProp.title}</span>
             </div>
             <div>{children}</div>
