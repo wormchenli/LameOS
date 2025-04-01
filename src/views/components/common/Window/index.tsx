@@ -32,17 +32,21 @@ const Window = ({
         window.removeEventListener("mouseup", handleMouseUp);
     };
 
-    const handleMouseDown = () => {
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         // Add global listeners on mouse down to track movement and release.
         clickHandler(windowProp.id);
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("mouseup", handleMouseUp);
+        if ((e.target as HTMLElement).id === "titlebar") {
+            window.addEventListener("mousemove", handleMouseMove);
+            window.addEventListener("mouseup", handleMouseUp);
+        }
     };
 
     return (
         <div
             className="absolute bg-white border border-gray-300 shadow-lg"
             style={{
+                width: windowProp.size.width,
+                height: windowProp.size.height,
                 left: position.x,
                 top: position.y,
                 zIndex: windowProp.zIndex,
@@ -50,8 +54,13 @@ const Window = ({
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
         >
-            <div>{windowProp.title}</div>
-            {children}
+            <div
+                id="titlebar"
+                className="transparent h-20 flex items-center justify-between border border-gray-500"
+            >
+                <span>{windowProp.title}</span>
+            </div>
+            <div>{children}</div>
         </div>
     );
 };

@@ -1,11 +1,11 @@
 import "server-only";
 import "reflect-metadata";
 
-import { AppDataSource } from "@/models";
-import { Folders } from "@/models/folders";
+import { AppDataSource } from "@/entities";
+import { FolderEntity } from "@/entities/folders";
 import { IsNull } from "typeorm";
 
-const folderRepository = AppDataSource.getRepository(Folders);
+const folderRepository = AppDataSource.getRepository(FolderEntity);
 
 const getAllFolders = async () => {
     const folders = await folderRepository.find({
@@ -23,6 +23,18 @@ const getRootFolder = async () => {
         },
     });
     return folder;
+};
+
+const getRootSubFolders = async () => {
+    const rootSubFolders = await folderRepository
+        .createQueryBuilder("folders")
+        .where(
+            "folders.parentid = (SELECT uuid FROM folders WHERE parentid IS NULL)"
+        )
+        .andWhere("folders.isdeleted = :isdeleted", { isdeleted: false })
+        .getMany();
+
+    return rootSubFolders;
 };
 
 const getAllDeletedFolders = async () => {
@@ -49,4 +61,5 @@ export const FolderController = {
     getRootFolder,
     getAllDeletedFolders,
     getSubFolders,
+    getRootSubFolders,
 };

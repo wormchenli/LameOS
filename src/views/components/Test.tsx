@@ -4,13 +4,19 @@ import useWindowManager from "@/os/utils/hooks/windowManagerHook";
 import { IWindow } from "@/os/utils/interfaces/windowInterfaces";
 import Window from "./common/Window";
 import Desktop from "./common/Desktop";
+import { osConfig } from "@/os/os.config";
+import { loadComponent } from "@/os/utils/componentLoader";
+import { useEffect, useState } from "react";
 
-export const Test = () => {
+export const Test = ({ componentName }: { componentName: string }) => {
     const windows: IWindow[] = [
         {
             title: "Window 1",
             id: "window1",
-            size: { width: 300, height: 200 },
+            size: {
+                width: osConfig.Windows.defaultSize.width,
+                height: osConfig.Windows.defaultSize.height,
+            },
             position: { x: 100, y: 100 },
             state: "normal",
         },
@@ -30,6 +36,8 @@ export const Test = () => {
         },
     ];
     const { stack, registerWindow, reArrangeWindow } = useWindowManager();
+    const [LoadedComponent, setLoadedComponent] =
+        useState<React.ComponentType | null>(null);
 
     const handleClick = () => {
         for (const window of windows) {
@@ -38,6 +46,12 @@ export const Test = () => {
     };
 
     const handleWindowClick = reArrangeWindow;
+
+    useEffect(() => {
+        loadComponent(componentName).then((comp) => {
+            setLoadedComponent(() => comp);
+        });
+    }, [componentName]);
 
     return (
         <Desktop>
@@ -50,7 +64,7 @@ export const Test = () => {
                         windowProp={window}
                         clickHandler={handleWindowClick}
                     >
-                        contents
+                        {LoadedComponent ? <LoadedComponent /> : null}
                     </Window>
                 ))}
             </div>

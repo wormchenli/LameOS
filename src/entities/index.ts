@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { loadEnvConfig } from "@next/env";
-import { Folders } from "@/models/folders";
+import { FolderEntity } from "@/entities/folders";
 
 const projectDir = process.cwd();
 loadEnvConfig(projectDir);
@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
-    entities: [Folders],
+    entities: [FolderEntity],
 });
 
 await AppDataSource.initialize()

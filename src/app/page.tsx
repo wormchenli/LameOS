@@ -1,5 +1,5 @@
 import { Test } from "@/views/components/Test";
 
 export default function Home() {
-    return <Test />;
+    return <Test componentName="Finder" />;
 }
