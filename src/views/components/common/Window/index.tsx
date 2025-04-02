@@ -44,7 +44,7 @@ const Window = ({
 
     return (
         <div
-            className="absolute bg-white border border-gray-300 shadow-lg"
+            className="absolute bg-white border border-gray-300 shadow-lg min-w-160 min-h-100"
             style={{
                 width: windowProp.size.width,
                 height: windowProp.size.height,
@@ -55,14 +55,24 @@ const Window = ({
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
         >
+            <div className="relative top-0 left-0 w-full h-full">
+                <div className="absolute top-0 left-0 w-full h-2 border cursor-n-resize" />
+                <div className="absolute bottom-0 left-0 w-full h-2 border cursor-s-resize" />
+                <div className="absolute top-0 left-0 h-full w-2 border cursor-w-resize" />
+                <div className="absolute top-0 right-0 h-full w-2 border cursor-e-resize" />
+                <div className="absolute w-3 h-3 top-0 left-0 border cursor-nw-resize" />
+                <div className="absolute w-3 h-3 top-0 right-0 border cursor-ne-resize" />
+                <div className="absolute w-3 h-3 bottom-0 left-0 border cursor-sw-resize" />
+                <div className="absolute w-3 h-3 bottom-0 right-0 border cursor-se-resize" />
+            </div>
             <div
                 id="titlebar"
-                className="transparent h-20 flex items-center justify-between border border-gray-500"
+                className="absolute top-0 left-0 transparent mx-0.5 my-0.5 w-[calc(100%-4px)] flex items-center justify-between border-gray-500 "
             >
                 <TitleBarIconsComponent />
                 <span>{windowProp.title}</span>
             </div>
-            <div>{children}</div>
+            {children}
         </div>
     );
 };

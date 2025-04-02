@@ -17,7 +17,7 @@ export function TitleBarIconsComponent() {
     };
 
     return (
-        <div className="flex items-center justify-between h-full px-2 w-20 border-1">
+        <div className="flex items-center justify-between h-full px-2 w-20">
             <div
                 onMouseEnter={() => handleMouseEnter("close")}
                 onMouseLeave={() => handleMouseLeave("close")}
