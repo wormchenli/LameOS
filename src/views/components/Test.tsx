@@ -7,6 +7,7 @@ import Desktop from "./common/Desktop";
 import { osConfig } from "@/os/os.config";
 import { loadComponent } from "@/os/utils/componentLoader";
 import { useEffect, useState } from "react";
+import DraggableResizableWindow from "./common/Window2";
 
 export const Test = ({ componentName }: { componentName: string }) => {
     const windows: IWindow[] = [
@@ -55,7 +56,7 @@ export const Test = ({ componentName }: { componentName: string }) => {
 
     return (
         <Desktop>
-            <h1 className="text-3xl font-bold underline">Official Lame-OS</h1>
+            {/* <h1 className="text-3xl font-bold underline">Official Lame-OS</h1>
             <button onClick={handleClick}>render test windows</button>
             <div>
                 {stack.windows.map((window) => (
@@ -67,7 +68,10 @@ export const Test = ({ componentName }: { componentName: string }) => {
                         {LoadedComponent ? <LoadedComponent /> : null}
                     </Window>
                 ))}
-            </div>
+            </div> */}
+            <DraggableResizableWindow>
+                <div>Test</div>
+            </DraggableResizableWindow>
         </Desktop>
     );
 };

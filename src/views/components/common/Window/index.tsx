@@ -56,23 +56,49 @@ const Window = ({
             onMouseUp={handleMouseUp}
         >
             <div className="relative top-0 left-0 w-full h-full">
-                <div className="absolute top-0 left-0 w-full h-2 border cursor-n-resize" />
-                <div className="absolute bottom-0 left-0 w-full h-2 border cursor-s-resize" />
-                <div className="absolute top-0 left-0 h-full w-2 border cursor-w-resize" />
-                <div className="absolute top-0 right-0 h-full w-2 border cursor-e-resize" />
-                <div className="absolute w-3 h-3 top-0 left-0 border cursor-nw-resize" />
-                <div className="absolute w-3 h-3 top-0 right-0 border cursor-ne-resize" />
-                <div className="absolute w-3 h-3 bottom-0 left-0 border cursor-sw-resize" />
-                <div className="absolute w-3 h-3 bottom-0 right-0 border cursor-se-resize" />
+                <div
+                    id="n-resizer"
+                    className="absolute top-0 left-0 w-full h-2 border cursor-n-resize"
+                />
+                <div
+                    id="s-resizer"
+                    className="absolute bottom-0 left-0 w-full h-2 border cursor-s-resize"
+                />
+                <div
+                    id="w-resizer"
+                    className="absolute top-0 left-0 h-full w-2 border cursor-w-resize"
+                />
+                <div
+                    id="e-resizer"
+                    className="absolute top-0 right-0 h-full w-2 border cursor-e-resize"
+                />
+                <div
+                    id="nw-resizer"
+                    className="absolute w-3 h-3 top-0 left-0 border cursor-nw-resize"
+                />
+                <div
+                    id="ne-resizer"
+                    className="absolute w-3 h-3 top-0 right-0 border cursor-ne-resize"
+                />
+                <div
+                    id="sw-resizer"
+                    className="absolute w-3 h-3 bottom-0 left-0 border cursor-sw-resize"
+                />
+                <div
+                    id="se-resizer"
+                    className="absolute w-3 h-3 bottom-0 right-0 border cursor-se-resize"
+                />
             </div>
             <div
                 id="titlebar"
-                className="absolute top-0 left-0 transparent mx-0.5 my-0.5 w-[calc(100%-4px)] flex items-center justify-between border-gray-500 "
+                className="absolute top-0 left-0 transparent mx-1 my-1 w-[calc(100%-8px)] h-12 flex items-center justify-between "
             >
                 <TitleBarIconsComponent />
                 <span>{windowProp.title}</span>
             </div>
-            {children}
+            <div className="absolute mx-2 my-2 top-12 w-[calc(100%-16px)]">
+                {children}
+            </div>
         </div>
     );
 };
